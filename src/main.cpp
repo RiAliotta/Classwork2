@@ -15,16 +15,22 @@ int main(int argc, char** argv) {
     double InitVal;
     double Dt;
     double Kp;
+    double Ki;
+    double Kd;
 
-    if (argc > 4){
+    if (argc > 5){
         InitVal = atof(argv[1]);
         Dt =  atof(argv[2]);
         Kp = atof(argv[3]);
+        Ki = atof(argv[4]);
+        Kd = atof(argv[5]);
     }
     else{
         InitVal = 1.0;
         Dt = 0.1;
-        Kp = 2.5;
+        Kp = 0.25;
+        Ki = 1;
+        Kd = 0.01;
     }
 
     CONTROLLER c(2.5, InitVal, Dt);

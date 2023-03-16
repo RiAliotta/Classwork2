@@ -15,11 +15,12 @@ class CONTROLLER {
         void set_time(double t);
         double get_state();
         double get_time();
-        double get_u();
 
     private:
 
         double _Kp;
+        double _Ki;
+        double _Kd;
         double _State;
         double _Ref;
         double _u;

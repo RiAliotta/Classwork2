@@ -25,7 +25,7 @@ void CONTROLLER::set_xdes(double x) {
 void CONTROLLER::system_start() {
     
     srand(time(NULL));
-    _State = 0.01*(rand()%1000);
+    _State = 0.01*(rand()%100);
 
 }
 
@@ -49,13 +49,18 @@ void CONTROLLER::loop() {
 
     CONTROLLER::system_start();
 
-    float e;
+    double e;
+    double up;
+    double ui;
+    double ud;
 
     while(true){
 
         e = _Ref - _State;
-        _u = _Kp*e;
-        _State += _u*_dt;
+        up = _Kp*e;
+        ui = _Ki*e;
+        ud = _Kd*e;
+        _State += up*_dt + ui/2*_dt*_dt + ud;
         _time += _dt;
 
         usleep(_dt*1e6);
@@ -79,11 +84,5 @@ double CONTROLLER::get_state(){
 double CONTROLLER::get_time(){
 
     return _time;
-
-}
-
-double CONTROLLER::get_u(){
-
-    return _u;
 
 }
