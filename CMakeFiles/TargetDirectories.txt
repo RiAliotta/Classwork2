@@ -1,0 +1,3 @@
+/home/riccardo/Scrivania/Robotics Lab/Repositories/control_loop/CMakeFiles/rebuild_cache.dir
+/home/riccardo/Scrivania/Robotics Lab/Repositories/control_loop/CMakeFiles/edit_cache.dir
+/home/riccardo/Scrivania/Robotics Lab/Repositories/control_loop/CMakeFiles/controller_example.dir

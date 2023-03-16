@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/riccardo/Scrivania/Robotics Lab/Repositories/control_loop/src/control_loop.h
+iostream
+-
+stdlib.h
+-
+boost/thread.hpp
+/home/riccardo/Scrivania/Robotics Lab/Repositories/control_loop/src/boost/thread.hpp
+
+/home/riccardo/Scrivania/Robotics Lab/Repositories/control_loop/src/main.cpp
+control_loop.h
+/home/riccardo/Scrivania/Robotics Lab/Repositories/control_loop/src/control_loop.h
+fstream
+-
+
