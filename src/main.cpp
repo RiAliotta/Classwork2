@@ -38,7 +38,7 @@ int main(int argc, char** argv) {
     std::fstream state_t;
     state_t.open("TimeState.txt", ios::out);
 
-    while(true){
+    while(c.get_run()){
         double a_time = c.get_time();
         double a_state = c.get_state();
         state_t << a_time << "\t" << a_state << std::endl;

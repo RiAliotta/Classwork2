@@ -7,6 +7,7 @@ CONTROLLER::CONTROLLER(double Kp, double InitVal, double dt) {
     _dt = dt;
     CONTROLLER::set_xdes(InitVal);
     CONTROLLER::set_time(0);
+    CONTROLLER::system_start();
 
     boost::thread loop_t (&CONTROLLER::loop, this);
     boost::thread usin_t (&CONTROLLER::user_input, this);
@@ -26,20 +27,38 @@ void CONTROLLER::system_start() {
     
     srand(time(NULL));
     _State = 0.01*(rand()%100);
+    _run = true;
 
 }
 
 void CONTROLLER::user_input() {
 
     std::cout << "User Connection Enabled...\n";
-    double desired;
+    std::cout << "Any non numeric input will terminate the program...\n";
+    std::cout << "Initial reference: " << _Ref << "\n";
+    string desired;
+    double value;
 
-    while(true){
+    while(_run){
 
-        std::cin >> desired;
-        CONTROLLER::set_xdes(desired);
+        try{
+            std::cin >> desired;
+            value = std::stod(desired);
+            CONTROLLER::set_xdes(value);
+        }catch(std::invalid_argument){
 
+            cout << "Terminating Program...\n";
+            CONTROLLER::kill();
+
+        }
+        
     } 
+
+}
+
+void CONTROLLER::kill(){
+
+    _run = 0;
 
 }
 
@@ -54,7 +73,7 @@ void CONTROLLER::loop() {
     double ui;
     double ud;
 
-    while(true){
+    while(_run){
 
         e = _Ref - _State;
         up = _Kp*e;
@@ -84,5 +103,11 @@ double CONTROLLER::get_state(){
 double CONTROLLER::get_time(){
 
     return _time;
+
+}
+
+bool CONTROLLER::get_run(){
+
+    return _run;
 
 }

@@ -15,9 +15,12 @@ class CONTROLLER {
         void set_time(double t);
         double get_state();
         double get_time();
+        bool get_run();
+        void kill();
 
     private:
 
+        bool _run;
         double _Kp;
         double _Ki;
         double _Kd;
